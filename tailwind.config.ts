@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        anton: ['var(--font-anton)'], 
+        integral: ['"Integral CF"', 'sans-serif'],
+      },
     },
   },
   plugins: [],
