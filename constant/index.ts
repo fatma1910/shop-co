@@ -1,3 +1,4 @@
+import { Facebook, Github, Instagram, Twitter } from "lucide-react"
 
 
 export const footerData = [
@@ -37,4 +38,28 @@ export const footerData = [
             "Youtube Playlist",
         ]
     }
+]
+
+export const Navdata = [
+    'Home',
+    'About',
+    'Contact',
+    'Shop'
+  ]
+
+
+export const iconData = [
+    {
+        icon:Facebook,
+    },
+    {
+        icon:Github,
+    },
+    {
+        icon:Instagram,
+    },
+    {
+        icon:Twitter,
+    },
+
 ]
