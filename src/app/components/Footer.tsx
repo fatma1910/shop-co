@@ -2,18 +2,27 @@
 import Image from 'next/image'
 import React from 'react'
 import { footerData, iconData } from '../../../constant'
-import { Instagram } from 'lucide-react'
-
+import { Instagram, Mail } from 'lucide-react'
 
 
 const Footer = () => {
   return (
-    <div className='lg:px-[100px] md:px-14 px-8 bg-[#F0F0F0]'>
+    <div className='lg:px-[100px] md:px-14 px-8 bg-[rgb(240,240,240)] absolute'>
         
-        <div></div>
+        <div className='py-9 px-16 bg-black relative  w-full -top-20 rounded-[20px] flex flex-col lg:flex-row justify-between gap-10'>
+            <h1 className='lg:text-[40px] text-[32px] leading-10  text-white font-semibold flex-1 '>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
+            <div className='flex flex-col gap-4 '>
+                <div className='relative flex-1'>
+                    <Mail className='absolute text-[#00000066] top-3 left-3'/>
+                    <input type="email" placeholder={` Enter your email address`} className='rounded-[62px] py-3 px-4 pl-10  outline-none focus:outline-none text-gray-700 w-full lg:w-[349px] '  />
+                   
+                </div>
+                <button className='rounded-[62px] py-3 px-4  text-black flex justify-center items-center w-full lg:w-[349px] bg-white font-medium'>Subscribe to Newsletter</button>
+            </div>
+        </div>
         <div className=' pt-20 pb-9 border-b-2  '>
             
-            <div className='flex flex-wrap  gap-[45px] '>
+            <div className='flex flex-wrap  gap-[65px] '>
             <div className='flex flex-col gap-[35px] mb-8 lg:mb-auto  w-[248px]   '>
                 <Image src="/logo.png" width={167} height={23} alt='logo' />
                 <p className='text-[14px] text-[#00000099] '>We have clothes that suits your style and which you’re proud to wear. From women to men.</p>
