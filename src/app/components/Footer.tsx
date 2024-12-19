@@ -7,10 +7,10 @@ import { Instagram, Mail } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <div className='lg:px-[100px] md:px-14 px-8 bg-[rgb(240,240,240)] absolute'>
+    <div className='lg:px-[100px] md:px-14 px-8 bg-[rgb(240,240,240)] absolute mt-36'>
         
-        <div className='py-9 px-16 bg-black relative  w-full -top-20 rounded-[20px] flex flex-col lg:flex-row justify-between gap-10'>
-            <h1 className='lg:text-[40px] text-[32px] leading-10  text-white font-semibold flex-1 '>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
+        <div className='py-9 lg:px-16 px-4 bg-black relative  w-full -top-20 rounded-[20px] flex flex-col lg:flex-row justify-between gap-10'>
+            <h1 className='lg:text-[40px] text-[22px] leading-10  text-white font-semibold flex-1 '>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
             <div className='flex flex-col gap-4 '>
                 <div className='relative flex-1'>
                     <Mail className='absolute text-[#00000066] top-3 left-3'/>
