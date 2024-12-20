@@ -7,7 +7,7 @@ import { Instagram, Mail } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <div className='lg:px-[100px] md:px-14 px-8 bg-[rgb(240,240,240)] absolute mt-36'>
+    <div className='lg:px-[100px] md:px-14 px-8 bg-[rgb(240,240,240)]  mt-36'>
         
         <div className='py-9 lg:px-16 px-4 bg-black relative  w-full -top-20 rounded-[20px] flex flex-col lg:flex-row justify-between gap-10'>
             <h1 className='lg:text-[40px] text-[22px] leading-10  text-white font-semibold flex-1 '>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
@@ -17,7 +17,7 @@ const Footer = () => {
                     <input type="email" placeholder={` Enter your email address`} className='rounded-[62px] py-3 px-4 pl-10  outline-none focus:outline-none text-gray-700 w-full lg:w-[349px] '  />
                    
                 </div>
-                <button className='rounded-[62px] py-3 px-4  text-black flex justify-center items-center w-full lg:w-[349px] bg-white font-medium'>Subscribe to Newsletter</button>
+                <button className='rounded-[62px] py-3 px-4  text-black flex justify-center items-center w-full lg:w-[349px] bg-white font-medium hover:bg-[#DB4444] transition-all duration-200 ease-in-out hover:text-white border border-white'>Subscribe to Newsletter</button>
             </div>
         </div>
         <div className=' pt-20 pb-9 border-b-2  '>

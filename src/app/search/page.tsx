@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 const page = () => {
     const [search,setSearch] = useState("")
   return (
-    <div className="py-20 min-h-screen bg-[#F2F0F1] ">
+    <div className="py-20 min-h-screen ">
       <h1 className="text-center font-bold text-2xl mb-6 uppercase">Search Products</h1>
       <div className="w-[95%] md:w-4/5 mx-auto">
         <input
