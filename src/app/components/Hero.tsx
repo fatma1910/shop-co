@@ -14,15 +14,15 @@ const Hero = () => {
             <button className='py-4 rounded-[62px] bg-black w-full text-white sm:w-[210px] hover:shadow-lg hover:bg-[#DB4444] duration-200 transition-all ease-in-out  '>Shop Now</button>
             <div className='grid grid-cols-2 sm:grid-cols-3 items-center sm:justify-start justify-center  gap-8   my-12'>
                 <div className='border-r-2 border-[#0000001A] pr-4'>
-                    <h4 className='sm:text-[40px] text-[20px] font-bold sm:leading-[54px] '><CountUp end={200} />+</h4>
+                    <h4 className='xl:text-[40px] lg:text-3xl md:text-2xl sm:text-xl text-[20px] font-bold xl:leading-[54px] '><CountUp end={200} />+</h4>
                     <p className='text-[#00000099] sm:text-[16px] text-[14px] leading-[22px] border-r'>International Brands</p>
                 </div>
                 <div className='sm:border-r-2 border-[#0000001A] pr-4'>
-                    <h4 className='sm:text-[40px] text-[20px] font-bold leading-[54px] '> <CountUp end={2000} />+</h4>
+                    <h4 className='xl:text-[40px] lg:text-3xl md:text-2xl sm:text-xl text-[20px] font-bold xl:leading-[54px] '> <CountUp end={2000} />+</h4>
                     <p className='text-[#00000099] text-[16px] leading-[22px] border-r'>High-Quality Products</p>
                 </div>
                 <div>
-                    <h4 className='sm:text-[40px] text-[20px] font-bold '><CountUp end={30000} />+</h4>
+                    <h4 className='xl:text-[40px] lg:text-3xl md:text-2xl sm:text-xl text-[20px] font-bold xl:leading-[54px] '><CountUp end={30000} />+</h4>
                     <p className='text-[#00000099] text-[16px]  border-r'>Happy Customers</p>
                 </div>
             </div>

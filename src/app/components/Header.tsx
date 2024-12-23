@@ -1,12 +1,16 @@
+'use client'
+
 import { CircleUserRound, Heart, Menu, Search, ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Navdata } from '../../../constant'
+import { UserButton, useUser } from '@clerk/nextjs'
 
 
 
 const Header = () => {
+  const {isSignedIn} = useUser()
   return (
     <div className='lg:px-[100px] sm:py-[32px] py-9  px-6 border-b '>
         <div className='flex  items-center justify-between'>
@@ -36,7 +40,12 @@ const Header = () => {
             <div className='flex items-center sm:gap-4 gap-2'> <Link href={'/search'}><Search className='cursor-pointer' /></Link>
             <Link href='/favorite'><Heart /></Link>
             <Link href='/cart'><ShoppingCart /></Link>
+            {isSignedIn ? (
+              <UserButton/>
+            ):(
             <Link href='/sign-in'> <CircleUserRound /> </Link>
+            )}
+            
             
 
             

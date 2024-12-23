@@ -21,3 +21,18 @@ export const Review = pgTable ('review',{
     review: varchar('review').notNull(),
     productId: integer('productId').references(()=>Product.id),
 } )
+
+export const Category = pgTable("category", {
+    id: serial("id").primaryKey(),
+    name: varchar("name").notNull().unique(),
+});
+
+
+export const ProductCategory = pgTable("product_category", {
+    productId: integer('product_id')
+        .references(() => Product.id)
+        .notNull(),
+    categoryId: integer('category_id')
+        .references(() => Category.id)
+        .notNull(),
+});
