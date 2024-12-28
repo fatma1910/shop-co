@@ -14,33 +14,46 @@ cloudinary.config({
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
-      const { title, author, rate, price, color, size, description, file, categories } = req.body;
+      console.log("Request body:", req.body);
 
+      const { title, rate, price, color, size, description, file, categories } = req.body;
+
+      if (!file) {
+        throw new Error("File data is missing");
+      }
+
+      // Upload image to Cloudinary
       const uploadResult = await cloudinary.uploader.upload(file, {
         folder: "Ecommerce",
       });
+      console.log("Cloudinary upload result:", uploadResult);
 
-      const insertedProduct = await db.insert(Product).values({
-        title,
-        author,
-        rate,
-        price,
-        color,
-        size,
-        description,
-        imagePublicId: uploadResult.public_id,
-        imageUrl: uploadResult.secure_url,
-      }).returning('id');
+      // Insert product into the database
+      const insertedProduct = await db
+        .insert(Product)
+        .values({
+          title,
+          rate,
+          price,
+          color,
+          size,
+          description,
+          imagePublicId: uploadResult.public_id,
+          imageUrl: uploadResult.secure_url,
+        })
+        .returning({ id: Product.id });
+      console.log("Inserted product:", insertedProduct);
 
-      // Insert categories
       const productId = insertedProduct[0].id;
+
+      // Insert categories into product_category table
       if (categories?.length) {
-        await db.insert(ProductCategory).values(
-          categories.map((categoryId: number) => ({
-            productId,
-            categoryId,
-          }))
-        );
+        const categoryData = categories.map((categoryId: number) => ({
+          productId,
+          categoryId,
+        }));
+
+        await db.insert(ProductCategory).values(categoryData);
       }
 
       res.status(200).json({ message: "Product added successfully" });
@@ -52,4 +65,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).json({ error: "Method not allowed" });
   }
 }
+
+
 

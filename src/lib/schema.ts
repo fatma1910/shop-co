@@ -11,5 +11,7 @@ export const ProductSchema = z.object({
     color: z.string().min(1, { message: "Color is required." }),
     size: z.string().min(1, { message: "Size is required." }),
     description: z.string().min(1, { message: "Description is required." }),
-    image: z.instanceof(File, { message: "Image must be a valid file object." })
+    image: z.instanceof(File, { message: "Image must be a valid file object." }),
+    categories: z.array(z.number()).nonempty("At least one category is required"),
+
   })

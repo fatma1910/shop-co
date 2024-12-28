@@ -4,7 +4,6 @@ import {  integer, numeric, pgTable, serial, text, varchar } from "drizzle-orm/p
 export const Product = pgTable ("product",{
     id: serial("id").primaryKey(),
     title: varchar("title").notNull(),
-    author: varchar("author").notNull(),
     rate: numeric('rate', { precision: 5, scale: 2 }).notNull(),
     price: numeric('price').notNull(),
     color:varchar("color").notNull(),
@@ -29,6 +28,7 @@ export const Category = pgTable("category", {
 
 
 export const ProductCategory = pgTable("product_category", {
+    id: serial("id").primaryKey(),
     productId: integer('product_id')
         .references(() => Product.id)
         .notNull(),

@@ -4,6 +4,8 @@ import { ProductSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "./use-toast";
+import { ToastAction } from "@/components/ui/toast"
 
 export default function UseProduct() {
   const form = useForm<z.infer<typeof ProductSchema>>({
@@ -15,19 +17,24 @@ export default function UseProduct() {
       description: "",
       size: "",
       rate: 0,
+      categories: [],
+      image: undefined,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof ProductSchema>) => {
     try {
-      // Upload image using FileReader
+      if (!values.image) {
+        throw new Error("No image file provided");
+      }
+  
+      
       const reader = new FileReader();
-      reader.readAsDataURL(values.image[0]); // Assuming `values.image` is a file input
-
+      reader.readAsDataURL(values.image); 
+  
       reader.onloadend = async () => {
         const imageData = reader.result;
-
-        // Send API request
+  
         const response = await fetch("/api/CreateProduct", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -36,15 +43,24 @@ export default function UseProduct() {
             file: imageData,
           }),
         });
-
+  
         if (!response.ok) throw new Error("Failed to add product");
-
+        toast({
+          title: "Product added successfully ",
+          variant: "success"
+        })
         console.log("Product added successfully");
+        
       };
     } catch (error) {
+      toast({
+        title: "Error adding product ",
+        variant: "destructive"
+      })
       console.error("Error adding product:", error);
     }
   };
+  
 
   return { form, onSubmit };
 }
