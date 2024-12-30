@@ -6,7 +6,7 @@ import CountUp from 'react-countup';
 
 const Hero = () => {
   return (
-    <div className=' mb-64  relative'>
+    <div className='  relative'>
         <div className='bg-[#F2F0F1]  lg:pt-24 pt-6 flex  flex-col px-6 lg:px-24 justify-between items-center  lg:gap-5 md:flex-row   md:justify-between overflow-hidden '>
         <div className=' flex flex-col '>
             <h1 className='font-bold xl:text-[64px] lg:text-[45px] md:text-[40px] text-[36px] leading-10  xl:leading-[64px] '>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>

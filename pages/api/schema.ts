@@ -7,10 +7,10 @@ export const Product = pgTable ("product",{
     rate: numeric('rate', { precision: 5, scale: 2 }).notNull(),
     price: numeric('price').notNull(),
     color:varchar("color").notNull(),
-    size:varchar("size").notNull(),
+    size: varchar("size").array().notNull(),
     description: varchar("description").notNull(),
     imagePublicId: varchar('image_public_id', { length: 255 }), 
-    imageUrl: text('image_url'),
+    imageUrl: text('image_url').notNull(),
 } )
 
 export const Review = pgTable ('review',{

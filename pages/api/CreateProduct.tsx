@@ -14,21 +14,14 @@ cloudinary.config({
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
-      console.log("Request body:", req.body);
+      
 
-      const { title, rate, price, color, size, description, file, categories } = req.body;
+      const { title, rate, price, color, size, description, image, categories } = req.body;
 
-      if (!file) {
-        throw new Error("File data is missing");
+      if (!image) {
+        throw new Error("Image data is missing");
       }
 
-      // Upload image to Cloudinary
-      const uploadResult = await cloudinary.uploader.upload(file, {
-        folder: "Ecommerce",
-      });
-      console.log("Cloudinary upload result:", uploadResult);
-
-      // Insert product into the database
       const insertedProduct = await db
         .insert(Product)
         .values({
@@ -38,21 +31,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           color,
           size,
           description,
-          imagePublicId: uploadResult.public_id,
-          imageUrl: uploadResult.secure_url,
+          imagePublicId: null, 
+          imageUrl: image, 
         })
         .returning({ id: Product.id });
-      console.log("Inserted product:", insertedProduct);
 
       const productId = insertedProduct[0].id;
 
-      // Insert categories into product_category table
       if (categories?.length) {
         const categoryData = categories.map((categoryId: number) => ({
           productId,
           categoryId,
         }));
-
         await db.insert(ProductCategory).values(categoryData);
       }
 
@@ -65,6 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).json({ error: "Method not allowed" });
   }
 }
+
 
 
 

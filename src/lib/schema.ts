@@ -9,7 +9,7 @@ export const ProductSchema = z.object({
       .max(5, { message: "Rate cannot exceed 5." }),
     price: z.number().positive({ message: "Price must be a positive number." }),
     color: z.string().min(1, { message: "Color is required." }),
-    size: z.string().min(1, { message: "Size is required." }),
+    size: z.array(z.string()).min(1, { message: "Please select at least one size" }),
     description: z.string().min(1, { message: "Description is required." }),
     image: z.instanceof(File, { message: "Image must be a valid file object." }),
     categories: z.array(z.number()).nonempty("At least one category is required"),

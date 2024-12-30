@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { db } from "../../../../pages/api/dpConfig"
 import { getTableColumns } from "drizzle-orm"
 import { Category } from "../../../../pages/api/schema"
-import Select, { SingleValue } from "react-select";
+import Select, { MultiValue, SingleValue } from "react-select";
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import UseProduct from "@/hooks/use-product-form"
+import { useRouter } from "next/navigation"
+
 
 
 type SizeOption = {
@@ -28,6 +30,7 @@ const sizeOptions: SizeOption[] = [
   { value: "small", label: "Small" },
   { value: "medium", label: "Medium" },
   { value: "large", label: "Large" },
+  { value: "X-large", label: "X-Large" },
 ];
 
 const CreateProduct = () => {
@@ -38,6 +41,7 @@ const CreateProduct = () => {
   useEffect(() => {
     getAllCategories();
   }, []);
+
 
   const getAllCategories = async () => {
     try {
@@ -62,12 +66,16 @@ const CreateProduct = () => {
     try {
       
       await onSubmit(data); 
-      form.reset();
+      
       setIsLoading(false); 
+      
+      
     } catch (error) {
       console.error("Error creating product:", error);
       setIsLoading(false); 
     }
+    form.reset();
+    
   };
 
   return (
@@ -154,12 +162,14 @@ const CreateProduct = () => {
                   <FormItem>
                     <FormLabel>Size</FormLabel>
                     <FormControl>
-                      <Select<SizeOption>
+                      <Select<SizeOption, true>
+                        isMulti
                         options={sizeOptions}
-                        placeholder="Choose a size..."
-                        isClearable
-                        onChange={(selectedOption: SingleValue<SizeOption>) =>
-                          form.setValue("size", selectedOption?.value || "")
+                        placeholder="Choose sizes..."
+                        onChange={(selectedOptions: MultiValue<SizeOption>) =>
+                          form.setValue("size", 
+                            // @ts-ignore
+                            selectedOptions.map(option => option.value)) 
                         }
                       />
                     </FormControl>
@@ -167,6 +177,8 @@ const CreateProduct = () => {
                   </FormItem>
                 )}
               />
+
+
               <FormField
                 control={form.control}
                 name="image"
@@ -174,7 +186,7 @@ const CreateProduct = () => {
                   <FormItem>
                     <FormLabel>Image</FormLabel>
                     <FormControl>
-                      <Input
+                    <Input
                         onChange={(e) => field.onChange(e.target.files ? e.target.files[0] : null)}
                         ref={field.ref}
                         name={field.name}
