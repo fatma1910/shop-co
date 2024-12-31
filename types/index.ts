@@ -23,3 +23,17 @@ export interface ProductData {
       
     // };
   }
+export interface ProductProps {
+
+      id: number;
+      title: string;
+      rate: string;
+      price: string;
+      color: string;
+      size: string[];
+      description: string;
+      imagePublicId: string | null;
+      imageUrl: string ;
+    
+  }
+

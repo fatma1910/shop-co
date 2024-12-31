@@ -1,23 +1,74 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import { ProductData } from '../../../types';
 import Image from 'next/image';
-import { StarHalf, StarIcon } from 'lucide-react';
+import {  Heart, ShoppingCart, StarHalf, StarIcon } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 const Card = ({ product }: ProductData) => {
   const productRate = Number(product.rate);
   const fullStars = Math.floor(productRate); 
   const hasHalfStar = productRate % 1 >= 0.5; 
+  const salePrice =  Number(product.price);
+  const [isFav, setIsFav] = useState(false)
+
+  const handleAddToFavorites = () => {
+    setIsFav(!isFav)
+    toast({
+        title: `Item added to favorites`,
+        variant: 'success',
+    });
+};
+  const handleAddToCart = () => {
+    
+    toast({
+        title: `Item added to cart`,
+        variant: 'success',
+    });
+};
+
+const handleRemoveFavorites = () => {
+  setIsFav(!isFav)
+
+    toast({
+        title: `Item removed from favorites`,
+        variant: 'destructive',
+    });
+};
 
   return (
-    <div className="">
-      <div className="bg-[#F0EEED] p-4 flex justify-center items-center rounded-3xl">
-        <Image
+    <div className="group overflow-hidden ">
+      <div className="bg-[#F0EEED] p-4  rounded-3xl ">
+        <div className='flex justify-between items-center mt-2 mx-2  '>
+          <button onClick={handleAddToCart} className='-ml-20  invisible group-hover:visible group-hover:ml-0 group-hover:transition-all duration-300 ease-in-out'  >
+            <ShoppingCart size={37}  />
+          </button>
+          {isFav?(
+            <button onClick={handleRemoveFavorites} className='-mr-20  invisible group-hover:visible group-hover:mr-0 group-hover:transition-all duration-300 ease-in-out'>
+            <Heart size={37} fill='red' className=' text-red-500'/>
+          </button>
+          ):(
+            <button onClick={handleAddToFavorites} 
+            className='-mr-20  invisible group-hover:visible group-hover:mr-0 group-hover:transition-all duration-300 ease-in-out'
+            >
+            <Heart size={37}/>
+          </button>
+          )}
+          
+        
+        </div>
+        
+        <div className='flex justify-center items-center'>
+          <Image
           src={product.imageUrl}
           alt={product.title}
           width={245}
           height={0}
           className="object-contain"
         />
+        </div>
+        
       </div>
       <div className="mt-4 space-y-2">
         <h2 className="text-xl font-bold">{product.title}</h2>
@@ -30,7 +81,7 @@ const Card = ({ product }: ProductData) => {
           )}{" "}
           {productRate}/<span className='text-[#00000099]'>5</span>
         </div>
-        <h2 className='text-2xl font-bold' >{product.price}$</h2>
+        <h2 className='text-2xl font-bold' >{product.price}$  <span className='text-xl text-gray-400 font-semibold line-through'>{salePrice+(salePrice*15/100)}$</span></h2>
       </div>
     </div>
   );

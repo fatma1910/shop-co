@@ -1,9 +1,48 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { db } from '../../../pages/api/dpConfig';
+import { Product } from '../../../pages/api/schema';
+import { getTableColumns } from 'drizzle-orm';
+import { desc } from "drizzle-orm";
+import { ProductData, ProductProps } from '../../../types';
+import Card from '../components/Card';
+
+
 
 const page = () => {
-    const [search,setSearch] = useState("")
+    const [search,setSearch] = useState("");
+    const [allProducts,setAllProducts] = useState<ProductProps[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
+
+    useEffect(() => {
+      getAllProducts()
+    }, []); 
+
+    const getAllProducts = async () => {
+      try {
+        const result = await db
+          .select({
+            ...getTableColumns(Product),
+          })
+          .from(Product)
+          .orderBy(desc(Product.id));
+        setAllProducts(result);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    };
+
+    useEffect(() => {
+      if (search.trim() === "") {
+        setFilteredProducts([]); 
+      } else {
+        const filtered = allProducts.filter((product) =>
+          product.title.toLowerCase().includes(search.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+      }
+    }, [search, allProducts]); 
   return (
     <div className="py-20 min-h-screen ">
       <h1 className="text-center font-bold text-2xl mb-6 uppercase">Search Products</h1>
@@ -15,8 +54,16 @@ const page = () => {
           placeholder="Search for products..."
           className="w-full p-4 text-lg border border-gray-300 rounded-lg mb-8 outline-none"
         />
-       
-          <p className="text-center text-gray-500 text-lg overflow-hidden">No products found for "{search}"</p>
+         {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
+            {filteredProducts.map((product) => (
+              <Card key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 text-lg  overflow-hidden">No products found for "{search}"</p>
+        )}
+
       </div>
     </div>
   )
