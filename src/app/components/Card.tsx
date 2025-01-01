@@ -63,15 +63,15 @@ const handleRemoveFavorites = () => {
           <Image
           src={product.imageUrl}
           alt={product.title}
-          width={245}
-          height={0}
+          width={256}
+          height={384}
           className="object-contain"
         />
         </div>
         
       </div>
       <div className="mt-4 space-y-2">
-        <h2 className="text-xl font-bold">{product.title}</h2>
+        <h2 className="text-xl font-bold capitalize">{product.title.toLowerCase()}</h2>
         <div className="flex items-center gap-1 mb-2">
           {[...Array(fullStars)].map((_, i) => (
             <StarIcon key={i} className="fill-yellow-400 text-yellow-400" />
