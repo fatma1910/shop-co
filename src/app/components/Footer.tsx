@@ -7,7 +7,7 @@ import { Instagram, Mail } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <div className='lg:px-[100px] md:px-14 px-8 bg-[rgb(240,240,240)]  mt-36'>
+    <footer className='lg:px-[100px] md:px-14 px-8 bg-[rgb(240,240,240)]  mt-36'>
         
         <div className='py-9 lg:px-16 px-4 bg-black relative  w-full -top-20 rounded-[20px] flex flex-col lg:flex-row justify-between gap-10'>
             <h1 className='lg:text-[40px] text-[22px] leading-10  text-white font-semibold flex-1 '>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
@@ -54,7 +54,7 @@ const Footer = () => {
             <p className='text-[#00000099] text-[14px] leading-5'>Shop.co © 2000-2023, All Rights Reserved</p>
             <Image src={'/check.png'} alt='' width={281} height={30} className='cursor-pointer'/>
         </div>
-    </div>
+    </footer>
   )
 }
 

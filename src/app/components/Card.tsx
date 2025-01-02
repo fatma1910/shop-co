@@ -46,7 +46,7 @@ const handleRemoveFavorites = () => {
           </button>
           {isFav?(
             <button onClick={handleRemoveFavorites} className='-mr-20  invisible group-hover:visible group-hover:mr-0 group-hover:transition-all duration-300 ease-in-out'>
-            <Heart size={37} fill='red' className=' text-red-500'/>
+            <Heart size={37}  className=' text-red-500 fill-red-500'/>
           </button>
           ):(
             <button onClick={handleAddToFavorites} 

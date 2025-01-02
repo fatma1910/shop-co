@@ -12,7 +12,7 @@ import { UserButton, useUser } from '@clerk/nextjs'
 const Header = () => {
   const {isSignedIn} = useUser()
   return (
-    <div className='lg:px-[100px] sm:py-[32px] py-9  px-6 border-b '>
+    <header className='lg:px-[100px] sm:py-[32px] py-9  px-6 border-b '>
         <div className='flex  items-center justify-between'>
             <div className='flex items-center sm:gap-6 gap-2 '>
               <button className='lg:hidden block '>
@@ -51,7 +51,7 @@ const Header = () => {
             
             </div>
         </div>
-    </div>
+    </header>
   )
 }
 

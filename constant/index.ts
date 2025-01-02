@@ -134,3 +134,29 @@ export const personData  = [
         text: "Product Designer"
     },
 ]
+
+export const testimonials = [
+    {
+      quote:
+        `"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair"`,
+      name: "Sarah M.",
+  
+    },
+    {
+      quote:
+        `"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.”`,
+      name: "Alex K.",
+  
+    },
+    {
+      quote: `"As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.”`,
+      name: "James L.",
+  
+    },
+    {
+      quote:
+        `"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions."`,
+      name: "Herman Melville.",
+  
+    },
+  ];
