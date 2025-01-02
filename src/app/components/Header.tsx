@@ -18,7 +18,7 @@ const Header = () => {
               <button className='lg:hidden block '>
                 <div className='duration-300 transition-all ease-in-out group' >
                   <Menu size={30}    />
-                  <div className='hidden z-20 flex-col justify-between items-center absolute  w-56  rounded-md group-hover:flex  backdrop-blur-sm bg-black bg-opacity-50 text-white/60  '>
+                  <div className='hidden z-20 flex-col justify-between items-center absolute  w-56  rounded-md group-hover:flex  backdrop-blur-sm bg-black bg-opacity-70 text-white/70  '>
                     {Navdata.map((link,index)=> (
                       <Link key={index} href={link.path} className='text-[16px] leading-5 border-b w-full py-4 hover:text-[20px] duration-200 transition-all ease-in-out hover:text-white'>{link.title}</Link>
                     ))}

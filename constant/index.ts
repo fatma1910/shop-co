@@ -56,6 +56,10 @@ export const Navdata = [
     {
         title: "Shop",
         path: "/shop",
+    },
+    {
+        title: "Dashboard",
+        path: "/dashboard",
     }
   ]
 
