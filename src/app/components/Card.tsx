@@ -59,7 +59,7 @@ const handleRemoveFavorites = () => {
         
         </div>
         
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center items-center h-[384px] '>
           <Image
           src={product.imageUrl}
           alt={product.title}
