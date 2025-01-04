@@ -116,7 +116,7 @@ const Navbar = () => {
 
   return (
     <div className='flex gap-9 '>
-      <aside className='w-[295px] border rounded-3xl py-5 px-6 space-y-6 h-screen'>
+      <aside className='w-[295px] border rounded-3xl py-5 px-6 space-y-6 h-full'>
         <div className='flex items-center justify-between pb-5 border-b border-b-[#0000001A]'>
           <h4 className='text-xl font-bold'>Filters</h4>
           <SlidersHorizontal className='text-[#00000066]' />
