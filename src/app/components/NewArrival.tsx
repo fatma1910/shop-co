@@ -20,7 +20,7 @@ const NewArrival = () => {
                 .from(Product)
                 .innerJoin(ProductCategory,eq(ProductCategory.productId,Product.id) )
                 .innerJoin(Category,eq(Category.id,ProductCategory.categoryId) )
-                .where(eq(Category.name,"new") );
+                .where(eq(Category.name,"new arrival") );
             
                 setFilteredProducts(result)
             } catch (error) {
