@@ -39,6 +39,7 @@ const Navbar = () => {
         .orderBy(desc(Product.id));
       setAllProducts(result);
       setFilteredProducts(result); 
+ 
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -73,8 +74,8 @@ const Navbar = () => {
           .filter((product) => Number(product.price) <= maxPrice)
           .filter((product) =>
             selectedSizes.length > 0
-              ? selectedSizes.some((size) => product.size.includes(size))
-              : true
+              ? selectedSizes.some((size) => product.size.includes(size.toLowerCase()))
+              : selectedSizes
           )
       );
     } catch (error) {
@@ -90,8 +91,8 @@ const Navbar = () => {
         .filter((product) => Number(product.price) <= selectedMaxPrice)
         .filter((product) =>
           selectedSizes.length > 0
-            ? selectedSizes.some((size) => product.size.includes(size))
-            : true
+            ? selectedSizes.some((size) => product.size.includes(size.toLowerCase()))
+            : selectedSizes
         )
     );
   };
