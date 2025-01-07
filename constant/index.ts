@@ -164,3 +164,10 @@ export const testimonials = [
   
     },
   ];
+
+  export const Size = [
+    "Small",
+    "Medium",
+    "Large",
+    "X-Large",
+];

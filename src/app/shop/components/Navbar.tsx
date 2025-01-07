@@ -1,6 +1,6 @@
 'use client'
 
-import { SlidersHorizontal } from 'lucide-react';
+import { SlidersHorizontal, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { getTableColumns } from 'drizzle-orm';
 
@@ -10,14 +10,13 @@ import { Slider } from '@/components/ui/slider';
 import { db } from '../../../../pages/api/dpConfig';
 import { Category, Product, ProductCategory } from '../../../../pages/api/schema';
 import { CategoryProps, ProductData, ProductProps } from '../../../../types';
+import { Button } from '@/components/ui/button';
+import { DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose, Drawer } from '@/components/ui/drawer';
+import { Size } from '../../../../constant';
 
 
-const Size = [
-    "Small",
-    "Medium",
-    "Large",
-    "X-Large",
-];
+
+
 
 const Navbar = () => {
 const [allCategory, setAllCategories] = useState<CategoryProps[]>([]);
@@ -99,14 +98,20 @@ const [allCategory, setAllCategories] = useState<CategoryProps[]>([]);
           
             setFilteredProducts(filtered);
           };
+        const handleFiltered = () => {
+          setCategory("all")
+          setMaxPrice(700)
+          setSelectedSizes("");
+        }
+        
           
 
   return (
-    <div className='flex gap-9 '>
-      <aside className='w-[295px] border rounded-3xl py-5 px-6 space-y-6 h-full'>
+    <div className='lg:flex gap-9 '>
+      <aside className='w-[295px] border rounded-3xl py-5 px-6 space-y-6 h-full hidden lg:block'>
         <div className='flex items-center justify-between pb-5 border-b border-b-[#0000001A]'>
           <h4 className='text-xl font-bold'>Filters</h4>
-          <button onClick={()=> setCategory("all")}>
+          <button onClick={()=> handleFiltered()}>
             <SlidersHorizontal  className='text-[#00000066]' />
           </button>
           
@@ -154,6 +159,62 @@ const [allCategory, setAllCategories] = useState<CategoryProps[]>([]);
 </div>
 
       </aside>
+      {/* mobile filtering */}
+      <div className='lg:hidden place-self-end mb-10'>
+        <Drawer >
+        <DrawerTrigger><SlidersHorizontal  className='text-[#00000066]' /></DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle className='flex justify-between items-center pb-5 border-b border-b-[#0000001A] text-xl'>Filters <DrawerClose> <X /> </DrawerClose> </DrawerTitle>
+            <DrawerDescription className='text-black'>
+              <div className='space-y-5 pb-5 border-b border-b-[#0000001A]'>
+                {allCategory.map((cat, index) => (
+                  <h3
+                    key={index}
+                    className={`'capitalize cursor-pointer text-base font-normal ${category===cat.name ? 'text-black':'text-[#00000099]'}  duration-150 transition-all hover:text-[17px] hover:text-[#000000cb]'`}
+                    onClick={() => setCategory(cat.name)}
+                  >
+                    {cat.name}
+                  </h3>
+                ))}
+              </div>
+              <div className='pb-5 border-b border-b-[#0000001A] mt-5'>
+                <div className='text-lg mb-4 font-medium'>
+                  Max Price:{" "}
+                  <span className='font-semibold ml-2'>${maxPrice}</span>
+                </div>
+                <Slider
+                  defaultValue={[700]}
+                  max={1000}
+                  step={10}
+                  onValueChange={(val) => setMaxPrice(val[0])}
+                />
+              </div>
+              <div className='space-y-5'>
+              <h4 className='text-xl font-bold'>Size</h4>
+              <div className='flex flex-wrap gap-2'>
+                  {Size.map((size) => (
+                  <button
+                      key={size}
+                      className={`py-[10px] px-5  transition-all duration-200 rounded-full ${
+                        selectedSizes === size
+                          ? "bg-black text-white"
+                          : "bg-[#F0F0F0] text-[#00000099]"
+                      }`}
+                      onClick={() => setSelectedSizes(size)}
+                  >
+                      {size}
+              </button>
+          ))}
+        </div>
+      </div>
+            </DrawerDescription>
+          </DrawerHeader>
+        </DrawerContent>
+      </Drawer>
+      </div>
+      
+
       {filteredProducts.length === 0 ? (
         <p className='flex items-center justify-center w-full'>No items match your filter.</p>
       ) : (
