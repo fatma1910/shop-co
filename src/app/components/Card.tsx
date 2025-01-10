@@ -5,6 +5,7 @@ import { ProductData } from '../../../types';
 import Image from 'next/image';
 import {  Heart, ShoppingCart, StarHalf, StarIcon } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { useShoppingCart } from 'use-shopping-cart';
 
 const Card = ({ product }: ProductData) => {
   const productRate = Number(product.rate);
@@ -12,6 +13,7 @@ const Card = ({ product }: ProductData) => {
   const hasHalfStar = productRate % 1 >= 0.5; 
   const salePrice =  Number(product.price);
   const [isFav, setIsFav] = useState(false)
+  const { addItem, cartCount } = useShoppingCart();
 
   const handleAddToFavorites = () => {
     setIsFav(!isFav)
@@ -21,7 +23,8 @@ const Card = ({ product }: ProductData) => {
     });
 };
   const handleAddToCart = () => {
-    
+    // @ts-ignore
+    addItem(product)
     toast({
         title: `Item added to cart`,
         variant: 'success',

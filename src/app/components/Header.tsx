@@ -6,10 +6,12 @@ import Link from 'next/link'
 import React from 'react'
 import { Navdata } from '../../../constant'
 import { UserButton, useUser } from '@clerk/nextjs'
+import { useShoppingCart } from 'use-shopping-cart'
 
 
 
 const Header = () => {
+  const {  cartCount } = useShoppingCart();
   const {isSignedIn} = useUser()
   return (
     <header className='lg:px-[100px] sm:py-[32px] py-9  px-6 border-b '>
@@ -39,7 +41,11 @@ const Header = () => {
             </div>
             <div className='flex items-center sm:gap-4 gap-2'> <Link href={'/search'}><Search className='cursor-pointer' /></Link>
             <Link href='/favorite'><Heart /></Link>
-            <Link href='/cart'><ShoppingCart /></Link>
+            <Link href='/cart' className='relative'>
+            <div className='absolute -top-2 left-[14px] text-white  text-[12px] font-medium bg-red-500 rounded-full flex justify-center items-center  w-[18px] h-[18px] '>
+              {cartCount}
+            </div>
+            <ShoppingCart /></Link>
             {isSignedIn ? (
               <UserButton/>
             ):(
