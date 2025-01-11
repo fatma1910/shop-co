@@ -167,7 +167,7 @@ const [allCategory, setAllCategories] = useState<CategoryProps[]>([]);
           <DrawerHeader>
             <DrawerTitle className='flex justify-between items-center pb-5 border-b border-b-[#0000001A] text-xl'>Filters <DrawerClose> <X /> </DrawerClose> </DrawerTitle>
             <DrawerDescription className='text-black'>
-              <div className='space-y-5 pb-5 border-b border-b-[#0000001A]'>
+              <div className='space-y-5 grid grid-cols-2 items-start justify-start pb-5 border-b border-b-[#0000001A]'>
                 {allCategory.map((cat, index) => (
                   <h3
                     key={index}
