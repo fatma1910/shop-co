@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
 import CartProvider from "./components/CartProvider";
+import { FavoritesProvider } from "./components/UseFav";
  
 const inter = Inter({
   subsets: ['latin'],
@@ -42,10 +43,12 @@ export default function RootLayout({
         className={`${geistMono.variable}  ${geistSans.variable} ${inter.className} antialiased`}
       >
         <CartProvider>
+        <FavoritesProvider>
         <Header/>
         {children}
         <Footer/>
         <Toaster />
+          </FavoritesProvider>
         </CartProvider>
       </body>
       

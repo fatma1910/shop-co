@@ -37,3 +37,9 @@ export interface ProductProps {
     
   }
 
+export interface FavoritesContextProps {
+  fav: ProductProps[];
+  addToFav: (item: ProductProps) => void;
+  removeFromFav: (id: number) => void;
+}
+
