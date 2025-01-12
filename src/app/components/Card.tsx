@@ -45,7 +45,7 @@ const Card = ({ product }: ProductData) => {
   };
 
   return (
-    <Link href={`/${product.id}`} className="group overflow-hidden">
+    <div  className="group overflow-hidden">
       <div className="bg-[#F0EEED] p-4 rounded-3xl w-full h-full">
         <div className="flex justify-between items-center mt-2 mx-2">
           <button
@@ -71,7 +71,7 @@ const Card = ({ product }: ProductData) => {
           )}
         </div>
 
-        <div className="flex justify-center items-center h-[30vh] sm:h-[35vh] md:h-[40vh] lg:h-[45vh]">
+        <Link href={`/${product.id}`} className="flex justify-center items-center h-[30vh] sm:h-[35vh] md:h-[40vh] lg:h-[45vh]">
           <Image
             src={product.imageUrl}
             alt={product.title}
@@ -79,7 +79,7 @@ const Card = ({ product }: ProductData) => {
             height={384}
             className="object-contain"
           />
-        </div>
+        </Link>
       </div>
       <div className="mt-4 space-y-2">
         <h2 className="text-xl font-bold capitalize line-clamp-1">
@@ -99,7 +99,7 @@ const Card = ({ product }: ProductData) => {
           </span>
         </h2>
       </div>
-    </Link>
+    </div>
   );
 };
 
