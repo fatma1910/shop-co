@@ -218,7 +218,7 @@ const [allCategory, setAllCategories] = useState<CategoryProps[]>([]);
       {filteredProducts.length === 0 ? (
         <p className='flex items-center justify-center w-full'>No items match your filter.</p>
       ) : (
-        <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 w-full'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full'>
           {filteredProducts.map((product, index) => (
             <Card key={index} product={product} />
           ))}
