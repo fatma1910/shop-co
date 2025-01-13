@@ -77,9 +77,8 @@ const ProductDetails = ({ product }: any) => {
           </div>
         </div>
 
-        {/* Quantity and Add to Cart */}
         <div className="flex flex-col md:flex-row gap-6 items-center my-5">
-          {/* Quantity Selector */}
+
           <div className="rounded-full flex gap-5 px-5 py-3 bg-[#F0F0F0] w-full md:w-[30%] justify-between">
             <button
               onClick={() => quantity > 1 && setQuantity(quantity - 1)}

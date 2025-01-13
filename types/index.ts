@@ -43,3 +43,11 @@ export interface FavoritesContextProps {
   removeFromFav: (id: number) => void;
 }
 
+export interface ReviewsProps {
+  id: number;
+  rate: string;
+  name: string;
+  review: string;
+  productId: number | null;
+}
+

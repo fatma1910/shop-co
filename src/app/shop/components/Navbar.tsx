@@ -120,7 +120,7 @@ const [allCategory, setAllCategories] = useState<CategoryProps[]>([]);
           {allCategory.map((cat, index) => (
             <h3
               key={index}
-              className={`'capitalize cursor-pointer text-base font-normal ${category===cat.name ? 'text-black':'text-[#00000099]'}  duration-150 transition-all hover:text-[17px] hover:text-[#000000cb]'`}
+              className={`'capitalize cursor-pointer text-base font-normal ${category===cat.name ? 'text-black text-[17px]':'text-[#00000099]'}  duration-150 transition-all hover:text-[17px] hover:text-[#000000cb]'`}
               onClick={() => setCategory(cat.name)}
             >
               {cat.name}
@@ -167,7 +167,7 @@ const [allCategory, setAllCategories] = useState<CategoryProps[]>([]);
           <DrawerHeader>
             <DrawerTitle className='flex justify-between items-center pb-5 border-b border-b-[#0000001A] text-xl'>Filters <DrawerClose> <X /> </DrawerClose> </DrawerTitle>
             <DrawerDescription className='text-black'>
-              <div className='space-y-5 grid grid-cols-2 items-start justify-start pb-5 border-b border-b-[#0000001A]'>
+              <div className=' space-y-1 items-start justify-start pb-5 border-b border-b-[#0000001A]'>
                 {allCategory.map((cat, index) => (
                   <h3
                     key={index}
