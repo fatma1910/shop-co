@@ -73,7 +73,7 @@ const Card = ({ product }: ProductData) => {
     </div>
 
     <Link
-      className="flex justify-center items-center h-[32vh] sm:h-[35vh] md:h-[40vh] lg:h-[45vh]"
+      className="flex justify-center items-center h-[32vh] sm:h-[35vh] md:h-[40vh] lg:h-[45vh] -z-10"
       href={`/${product?.id}`}
     >
       <Image
