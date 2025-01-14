@@ -49,13 +49,13 @@ const ProductDetails = ({ product }: any) => {
           {hasHalfStar && <StarHalf className="fill-yellow-400 text-yellow-400" />} {productRate}/
           <span className="text-[#00000099]">5</span>
         </div>
-        <h2 className="text-xl md:text-3xl font-bold mt-2">
+        <h2 className="text-xl md:text-3xl font-bold mt-2 flex flex-row items-center gap-2">
           {product?.price}${' '}
-          <span className="text-gray-400 font-semibold line-through">
+          <span className="text-gray-400 font-semibold   line-through">
             {salePrice + (salePrice * 15) / 100}$
           </span>
-          <span className="text-[#FF3333] text-sm md:text-base font-medium py-[6px] px-4 bg-[#FF33331A] ml-3 rounded-full">
-            -40%
+          <span className="text-[#FF3333] text-sm md:text-base font-medium py-[6px] px-4 bg-[#FF33331A]  rounded-full">
+            -20%
           </span>
         </h2>
         <p className="py-5 text-sm md:text-base font-normal text-[#00000099] border-b">

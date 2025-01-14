@@ -48,7 +48,7 @@ const Card = ({ product }: ProductData) => {
     <div className="group overflow-hidden r">
   <div className="bg-[#F0EEED] p-4 rounded-3xl">
 
-    <div className="flex justify-between items-center mt-2 mx-2">
+    <div className="flex justify-between items-center mt-2 mx-2 z-10">
       <button
         onClick={handleAddToCart}
         className="md:-ml-20 md:invisible md:group-hover:visible md:group-hover:ml-0 group-hover:transition-all duration-300 ease-in-out"
@@ -72,8 +72,9 @@ const Card = ({ product }: ProductData) => {
       )}
     </div>
 
-    <div
+    <Link
       className="flex justify-center items-center h-[32vh] sm:h-[35vh] md:h-[40vh] lg:h-[45vh]"
+      href={`/${product?.id}`}
     >
       <Image
         src={product?.imageUrl}
@@ -82,11 +83,11 @@ const Card = ({ product }: ProductData) => {
         height={384}
         className="object-contain"
       />
-    </div>
+    </Link>
   </div>
 
 
-  <Link href={`/${product?.id}`}  className="py-4">
+  <div  className="py-4">
     <h2 className="text-xl font-bold capitalize line-clamp-1">
       {product?.title.toLowerCase()}
     </h2>
@@ -103,7 +104,7 @@ const Card = ({ product }: ProductData) => {
         {salePrice + (salePrice * 15) / 100}$
       </span>
     </h2>
-  </Link>
+  </div>
 </div>
 
   );
