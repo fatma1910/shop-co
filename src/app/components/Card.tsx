@@ -9,7 +9,7 @@ import { useShoppingCart } from 'use-shopping-cart';
 import { useFavorites } from './UseFav';
 import Link from 'next/link';
 
-const Card = ({ product }: ProductData) => {
+const Card = ({ product }: ProductData,className?:string) => {
   const productRate = Number(product?.rate);
   const fullStars = Math.floor(productRate);
   const hasHalfStar = productRate % 1 >= 0.5;
@@ -45,7 +45,7 @@ const Card = ({ product }: ProductData) => {
   };
 
   return (
-    <div className="group overflow-hidden r">
+    <div className={`"group overflow-hidden "`}>
   <div className="bg-[#F0EEED] p-4 rounded-3xl">
 
     <div className="flex justify-between items-center mt-2 mx-2 z-10">

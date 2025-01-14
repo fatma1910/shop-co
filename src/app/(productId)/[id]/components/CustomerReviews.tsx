@@ -45,7 +45,7 @@ const CustomerReviews = (productId:any) => {
             ) :(
         <div className='grid grid-cols-1 sm:grid-cols-2 items-center gap-6 mt-5'>
             {reviews.map((review)=>(
-            <div key={review.id} className='py-7 px-8 border rounded-3xl space-y-2'>
+            <div key={review.id} className='h-full py-7 px-8 border rounded-3xl space-y-2'>
             <div className="flex items-center gap-2 ">
             {[...Array(Number(review.rate))].map((_, i) => (
                 <StarIcon key={i} className="fill-yellow-400 text-yellow-400" />

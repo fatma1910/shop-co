@@ -7,6 +7,8 @@ import { eq, getTableColumns } from "drizzle-orm";
 import { db } from '../../../../../pages/api/dpConfig';
 import { ProductData, ProductProps } from '../../../../../types';
 import 'swiper/css';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css/pagination';
 
 const Related = (product : any) => {
   const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([]);
@@ -56,10 +58,15 @@ const Related = (product : any) => {
             480: {slidesPerView: 2 },
             768: {slidesPerView: 3},
             1024: {slidesPerView: 4},
-        }}>
+        }}
+        pagination={{
+          clickable: true,
+      }}
+      modules={[Pagination]}
+        >
             {filteredProducts.map((Product,index)=>{
                 return(
-                <SwiperSlide key={index}>
+                <SwiperSlide className='mb-6' key={index}>
                     <Card product={Product}   />
                 </SwiperSlide>
                 )

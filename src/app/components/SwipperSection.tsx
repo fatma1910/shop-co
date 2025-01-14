@@ -4,6 +4,9 @@ import Card from './Card'
 import { ProductData } from '../../../types'
 import Link from 'next/link'
 import 'swiper/css';
+import 'swiper/css/pagination';
+
+import {Pagination} from 'swiper/modules'
 
 const SwiperSection = ({product,title}:{product:ProductData[],title:string}) => {
   return (
@@ -16,10 +19,15 @@ const SwiperSection = ({product,title}:{product:ProductData[],title:string}) => 
             480: {slidesPerView: 2 },
             768: {slidesPerView: 3},
             1024: {slidesPerView: 4},
-        }}>
+        }}
+        pagination={{
+            clickable: true,
+        }}
+        modules={[Pagination]}
+        >
             {product.map((Product,index)=>{
                 return(
-                <SwiperSlide key={index}>
+                <SwiperSlide className='mb-6' key={index}>
                     <Card product={Product.product}   />
                 </SwiperSlide>
                 )
