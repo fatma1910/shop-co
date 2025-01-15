@@ -28,7 +28,7 @@ const CartItems = ({ product, isLastItem }: { product: any; isLastItem: boolean 
                 {product.title.toLowerCase()}
               </h2>
               <p className='text-sm'>
-                Size: <span className='text-[#00000099]'>{product.size[0]}</span>
+                Size: <span className='text-[#00000099]'>{product.size}</span>
               </p>
               <p className='text-sm'>
                 Color: <span className='text-[#00000099]'>{product.color}</span>

@@ -8,8 +8,9 @@ import { toast } from '@/hooks/use-toast';
 import { useShoppingCart } from 'use-shopping-cart';
 import { useFavorites } from './UseFav';
 import Link from 'next/link';
+import CardDialog from './CardDialog';
 
-const Card = ({ product }: ProductData,className?:string) => {
+const Card = ({ product }: ProductData) => {
   const productRate = Number(product?.rate);
   const fullStars = Math.floor(productRate);
   const hasHalfStar = productRate % 1 >= 0.5;
@@ -35,37 +36,32 @@ const Card = ({ product }: ProductData,className?:string) => {
     });
   };
 
-  const handleAddToCart = () => {
-    // @ts-ignore
-    addItem(product);
-    toast({
-      title: `Item added to cart`,
-      variant: 'success',
-    });
-  };
 
   return (
-    <div className={`"group overflow-hidden "`}>
+    <div className="group overflow-hidden ">
   <div className="bg-[#F0EEED] p-4 rounded-3xl">
 
     <div className="flex justify-between items-center mt-2 mx-2 z-10">
       <button
-        onClick={handleAddToCart}
-        className="md:-ml-20 md:invisible md:group-hover:visible md:group-hover:ml-0 group-hover:transition-all duration-300 ease-in-out"
+        
+        className="md:-ml-20 w-12 md:invisible block md:group-hover:visible md:group-hover:ml-0 group-hover:transition-all duration-300 ease-in-out"
       >
-        <ShoppingCart size={37} />
+        <CardDialog product={product}/>
+        
       </button>
       {isFav ? (
         <button
           onClick={handleRemoveFavorites}
-          className="md:-mr-20 md:invisible md:group-hover:visible md:group-hover:mr-0 group-hover:transition-all duration-300 ease-in-out"
+          className="md:-mr-20 md:invisible 
+          block 
+          md:group-hover:visible md:group-hover:mr-0 group-hover:transition-all duration-300 ease-in-out"
         >
           <Heart size={37} className="text-red-500 fill-red-500" />
         </button>
       ) : (
         <button
           onClick={handleAddToFavorites}
-          className="md:-mr-20 md:invisible md:group-hover:visible md:group-hover:mr-0 group-hover:transition-all duration-300 ease-in-out"
+          className="md:-mr-20  md:invisible block  md:group-hover:visible md:group-hover:mr-0 group-hover:transition-all duration-300 ease-in-out"
         >
           <Heart size={37} />
         </button>
