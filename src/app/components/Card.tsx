@@ -3,9 +3,8 @@
 import React from 'react';
 import { ProductData } from '../../../types';
 import Image from 'next/image';
-import { Heart, ShoppingCart, StarHalf, StarIcon } from 'lucide-react';
+import { Heart, StarHalf, StarIcon } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
-import { useShoppingCart } from 'use-shopping-cart';
 import { useFavorites } from './UseFav';
 import Link from 'next/link';
 import CardDialog from './CardDialog';
@@ -15,7 +14,6 @@ const Card = ({ product }: ProductData) => {
   const fullStars = Math.floor(productRate);
   const hasHalfStar = productRate % 1 >= 0.5;
   const salePrice = Number(product?.price);
-  const { addItem } = useShoppingCart();
   const { fav, addToFav, removeFromFav } = useFavorites();
 
   const isFav = fav.some((favItem) => favItem.id === product?.id);
@@ -41,7 +39,7 @@ const Card = ({ product }: ProductData) => {
     <div className="group overflow-hidden ">
   <div className="bg-[#F0EEED] p-4 rounded-3xl">
 
-    <div className="flex justify-between items-center mt-2 mx-2 z-10">
+    <div className="flex justify-between items-center mt-2 mx-2 z-10 overflow-hidden">
       <button
         
         className="md:-ml-20 w-12 md:invisible block md:group-hover:visible md:group-hover:ml-0 group-hover:transition-all duration-300 ease-in-out"
@@ -69,7 +67,7 @@ const Card = ({ product }: ProductData) => {
     </div>
 
     <Link
-      className="flex justify-center items-center h-[32vh] sm:h-[35vh] md:h-[40vh] lg:h-[45vh] -z-10"
+      className="flex justify-center items-center h-[32vh] sm:h-[35vh] md:h-[40vh] lg:h-[45vh] "
       href={`/${product?.id}`}
     >
       <Image
@@ -77,7 +75,7 @@ const Card = ({ product }: ProductData) => {
         alt={product?.title}
         width={256}
         height={384}
-        className="object-contain"
+        className="object-contain h-full w-full"
       />
     </Link>
   </div>

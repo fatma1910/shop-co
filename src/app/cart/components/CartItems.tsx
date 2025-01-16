@@ -8,6 +8,8 @@ import { useShoppingCart } from 'use-shopping-cart';
 const CartItems = ({ product, isLastItem }: { product: any; isLastItem: boolean }) => {
     const { removeItem, incrementItem, decrementItem } = useShoppingCart();
     
+
+    
     return (
       <div
         className={`flex flex-col sm:flex-row justify-between pb-6 ${

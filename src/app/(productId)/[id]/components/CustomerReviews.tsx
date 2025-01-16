@@ -3,29 +3,45 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../../../../../pages/api/dpConfig';
 import { Review } from '../../../../../pages/api/schema';
-import { eq , desc } from "drizzle-orm";
+import { eq , desc,asc } from "drizzle-orm";
 import { ReviewsProps } from '../../../../../types';
 import AddReview from './AddReview';
-import { CircleCheck, StarIcon } from 'lucide-react';
+import { ChevronDownIcon, CircleCheck, StarIcon } from 'lucide-react';
+import {  Select } from '@headlessui/react'
+
+
 
 const CustomerReviews = (productId:any) => {
-    const [reviews, setReview] = useState<ReviewsProps[]>([]);
+    const [reviews, setReviews] = useState<ReviewsProps[]>([]);
+    const [sortOrder, setSortOrder] = useState("latest")
+    console.log(sortOrder)
+
    
     
     useEffect(() => {
 
         getAllReviews();
+
     
-    }, [productId.id]);
+    }, [productId.id,sortOrder]);
 
     const getAllReviews = async () => {
+        const order = sortOrder === 'latest' ? desc(Review.id) : asc(Review.id);
+    
+
         const result = await db
-          .select() 
+          .select()
           .from(Review)
           .where(eq(Review.productId, productId.productId.id))
-          .orderBy(desc(Review.id));
-        setReview(result);
-    };
+          .orderBy(order);
+    
+        setReviews(result);
+        }
+
+
+    const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSortOrder(e.target.value);
+      };
 
   return (
     <div className='py-10 mt-10 border-t'>
@@ -33,8 +49,17 @@ const CustomerReviews = (productId:any) => {
             <h2 className='sm:text-2xl text-xl font-bold'>All Reviews <span className='text-base  text-[#00000099]'>({reviews.length}) </span> </h2>
 
                 <div className='flex gap-2'>
-                <button className='bg-[#F0F0F0] py-4 px-5 rounded-full hidden sm:block 
-                '>Latest</button>
+                <div className="">
+                <Select
+                    value={sortOrder}
+                    onChange={handleSortChange}
+                    className='bg-[#F0F0F0] py-4 px-5 rounded-full hidden sm:block focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 '
+                    >
+                    <option value="latest">Latest</option>
+                    <option  value="oldest"> Oldest</option>
+                </Select>
+
+                </div>
                 <AddReview refreshData={getAllReviews} productId={productId} />
             </div>
             

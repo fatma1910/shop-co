@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Heart, Minus, Plus, StarHalf, StarIcon } from 'lucide-react';
+import { Heart, StarHalf, StarIcon } from 'lucide-react';
 import { useShoppingCart } from 'use-shopping-cart';
 import { toast } from '@/hooks/use-toast';
 import { useFavorites } from '@/app/components/UseFav';
@@ -12,8 +12,7 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
   const fullStars = Math.max(Math.floor(productRate), 0);
   const hasHalfStar = productRate % 1 >= 0.5;
   const salePrice = Number(product?.price);
-  const { addItem, cartDetails } = useShoppingCart();
-  const [quantity, setQuantity] = useState(1);
+  const { addItem } = useShoppingCart();
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const { fav, addToFav, removeFromFav } = useFavorites();
 
@@ -43,6 +42,7 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
       });
       return;
     }
+    
   
     const uniqueId = `${product.id}-${selectedSize}`;
   
@@ -50,12 +50,11 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
       ...product,
       id: uniqueId,
       size: selectedSize,
-      quantity, 
     });
   
     toast({
       title: `Item added to cart`,
-      description: `${quantity} x ${product.title} (${selectedSize})`,
+      description: `${product.title} (${selectedSize})`,
       variant: 'success',
     });
   
@@ -84,7 +83,7 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
         />
       </div>
 
-      {/* Product Info */}
+
       <div className="flex-1">
         <h2 className="text-2xl md:text-[40px] font-bold uppercase tracking-tighter">
           {product?.title}
@@ -109,7 +108,7 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
           {product?.description}
         </p>
 
-        {/* Choose Size */}
+
         <div className="py-5 border-b">
           <p className="text-[#00000099] mb-3 text-sm md:text-base">Choose Size</p>
           <div className="flex flex-wrap gap-2">
@@ -129,26 +128,10 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 items-center my-5">
-          <div className="rounded-full flex gap-5 px-5 py-3 bg-[#F0F0F0] w-full md:max-w-[30%] justify-between">
-            <button
-              onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-              disabled={quantity === 1}
-              className={`${quantity === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-            >
-              <Minus />
-            </button>
-            <p>{quantity}</p>
-
-            <button onClick={() => setQuantity(quantity + 1)}>
-              <Plus />
-            </button>
-          </div>
-
-          {/* Add to Cart Button */}
+        <div className="flex   items-center my-5">
           <button
             onClick={handleAddToCart}
-            className="w-full md:max-w-[70%] rounded-full text-white bg-black py-[16px]"
+            className="w-full md:w-[60%] rounded-full text-white bg-black py-[16px]"
           >
             Add to Cart
           </button>
