@@ -27,7 +27,7 @@ const UserForm = () => {
       await onSubmit(data)
       setIsLoading(false)
     } catch (error) {
-      console.error("Error creating product:", error)
+      console.error("Error creating order:", error)
       setIsLoading(false)
     }
     form.reset()
@@ -117,7 +117,7 @@ const UserForm = () => {
             </div>
 
             <Button type="submit" disabled={isLoading} className="w-full">
-              {isLoading ? "Submitting..." : "Submit"}
+              {isLoading ? "Ordering..." : "Order"}
             </Button>
           </form>
         </Form>
