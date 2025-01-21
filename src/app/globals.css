@@ -87,5 +87,9 @@ body {
   .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
     @apply bg-black ;
   }
+
+  .PhoneInputInput{
+    @apply outline-none px-2
+  }
   
 

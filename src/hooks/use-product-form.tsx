@@ -36,7 +36,7 @@ export default function UseProduct() {
       formData.append("file", values.image);
       formData.append("upload_preset", "ml_default"); 
   
-      const response = await fetch("https://api.cloudinary.com/v1_1/dbbiout5y/image/upload", {
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_NAME}/image/upload`, {
         method: "POST",
         body: formData,
       });

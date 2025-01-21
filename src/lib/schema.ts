@@ -1,3 +1,4 @@
+
 "use client";
 import { z } from "zod";
 
@@ -15,3 +16,12 @@ export const ProductSchema = z.object({
     categories: z.array(z.number()).nonempty("At least one category is required"),
 
   })
+export const OrderSchema = z.object({
+    name: z.string().min(2, { message: "Name is required." }),
+    street: z.string().min(2, { message: "Street is required." }),
+    city: z.string().min(2, { message: "City is required." }),
+    phone: z.string().min(13, { message: "Number must be 11 digits" }).max(13, { message: "Number must be 11 digits" }) ,
+    email: z.string().min(1, { message: "email is required." }).email({message: "must be a valid email."}),
+  })
+
+

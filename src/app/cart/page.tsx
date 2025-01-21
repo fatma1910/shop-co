@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React from 'react'
 import { useShoppingCart } from 'use-shopping-cart';
 import CartItems from './components/CartItems';
+import Link from 'next/link';
 
 const page = () => {
     const {  cartDetails,  totalPrice ,cartCount } = useShoppingCart();
@@ -56,7 +57,10 @@ const page = () => {
                     </h4>
                 </div>
 
+                <Link href='/checkout'>
                 <button className='w-full bg-black text-white rounded-full py-4 mt-8 text-lg'>Go to Checkout</button>
+                </Link>
+                
 
             </div>
         </div>

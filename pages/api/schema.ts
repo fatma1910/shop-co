@@ -1,4 +1,4 @@
-import {  integer, numeric, pgTable, serial, text, varchar } from "drizzle-orm/pg-core"; 
+import {  integer, numeric, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core"; 
 
 
 export const Product = pgTable ("product",{
@@ -12,6 +12,23 @@ export const Product = pgTable ("product",{
     imagePublicId: varchar('image_public_id', { length: 255 }), 
     imageUrl: text('image_url').notNull(),
 } )
+export const Order = pgTable("order", {
+    id: serial("id").primaryKey(),
+    name: varchar("name").notNull(),
+    email: varchar("email").notNull(),
+    phone: varchar("phone").notNull(),
+    street: varchar("street").notNull(),
+    city: varchar("city").notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const OrderProduct = pgTable("order_product", {
+    id: serial("id").primaryKey(),
+    orderId: integer("order_id").references(() => Order.id).notNull(),
+    productId: integer("product_id").references(() => Product.id).notNull(),
+    quantity: integer("quantity").notNull(),
+    price: numeric("price").notNull(),
+});
 
 export const Review = pgTable ('review',{
     id: serial('id').primaryKey(),
