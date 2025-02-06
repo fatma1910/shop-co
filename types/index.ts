@@ -31,7 +31,6 @@ export interface ProductProps {
       color: string;
       size: string[];
       description: string;
-      imagePublicId: string | null;
       imageUrl: string ;
     
   }
