@@ -9,7 +9,6 @@ export const Product = pgTable ("product",{
     color:varchar("color").notNull(),
     size: varchar("size").array().notNull(),
     description: varchar("description").notNull(),
-    imagePublicId: varchar('image_public_id', { length: 255 }), 
     imageUrl: text('image_url').notNull(),
 } )
 export const Order = pgTable("order", {
@@ -19,16 +18,12 @@ export const Order = pgTable("order", {
     phone: varchar("phone").notNull(),
     street: varchar("street").notNull(),
     city: varchar("city").notNull(),
+    products: text("products").notNull(),
     createdAt: timestamp("created_at").defaultNow(),
+    createdBy: varchar('createdBy').notNull(),
 });
 
-export const OrderProduct = pgTable("order_product", {
-    id: serial("id").primaryKey(),
-    orderId: integer("order_id").references(() => Order.id).notNull(),
-    productId: integer("product_id").references(() => Product.id).notNull(),
-    quantity: integer("quantity").notNull(),
-    price: numeric("price").notNull(),
-});
+
 
 export const Review = pgTable ('review',{
     id: serial('id').primaryKey(),

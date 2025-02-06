@@ -6,7 +6,7 @@ import { Product, ProductCategory } from "./schema";
 
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET,
 });
@@ -31,7 +31,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           color,
           size,
           description,
-          imagePublicId: null, 
           imageUrl: image, 
         })
         .returning({ id: Product.id });

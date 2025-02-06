@@ -30,7 +30,7 @@ const sizeOptions: SizeOption[] = [
   { value: "small", label: "Small" },
   { value: "medium", label: "Medium" },
   { value: "large", label: "Large" },
-  { value: "x-large", label: "Xne-Large" },
+  { value: "x-large", label: "X-Large" },
 ];
 
 const CreateProduct = () => {
