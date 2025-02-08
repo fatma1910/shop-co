@@ -6,7 +6,7 @@ import { Order } from "./schema";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
-      const { name, email, phone, street, city, products, createdBy } = req.body;
+      const { name, email, phone, street, city, products, createdBy , total } = req.body;
 
 
       if (!name || !email || !phone || !street || !city || !products || !createdBy) {
@@ -22,6 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         city,
         products: JSON.stringify(products),
         createdBy,
+        total,
       });
 
       return res.status(201).json({ message: "Order created successfully" });

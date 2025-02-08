@@ -21,6 +21,8 @@ export const Order = pgTable("order", {
     products: text("products").notNull(),
     createdAt: timestamp("created_at").defaultNow(),
     createdBy: varchar('createdBy').notNull(),
+    status: varchar('status').default('pending'),
+    total: numeric('total').notNull(),
 });
 
 

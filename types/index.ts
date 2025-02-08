@@ -49,3 +49,17 @@ export interface ReviewsProps {
   productId: number | null;
 }
 
+export interface OrderProps {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  street: string;
+  city: string;
+  products: string;
+  createdAt: Date | null;
+  createdBy: string;
+  status:string|null;
+  total:string
+}
+

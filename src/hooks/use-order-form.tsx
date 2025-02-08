@@ -23,13 +23,13 @@ export default function UseOrder() {
   });
   const { user } = useUser();
   const router = useRouter();
-  const {  clearCart , cartDetails } = useShoppingCart();
+  const {  clearCart , cartDetails ,totalPrice} = useShoppingCart();
   const onSubmit = async (values: z.infer<typeof OrderSchema>) => {
     try {
       const response = await fetch("/api/Order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, products: cartDetails, createdBy: user?.primaryEmailAddress?.emailAddress }), 
+        body: JSON.stringify({ ...values, products: cartDetails, createdBy: user?.primaryEmailAddress?.emailAddress , total:totalPrice  }), 
       });
 
       if (!response.ok) {
@@ -43,7 +43,7 @@ export default function UseOrder() {
       });
 
       clearCart();
-      router.push("/");
+      router.push("/orders");
     } catch (error) {
       console.error("Error submitting order:", error);
       Swal.fire({
