@@ -63,7 +63,7 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
   
 
   return (
-    <div className={`flex flex-col md:flex-row gap-8 items-center ${className}`}>
+    <div className={`flex flex-col md:flex-row gap-8 items-start ${className}`}>
       <div className="relative w-full md:w-[444px] h-[300px] md:h-[530px] bg-[#F0EEED] rounded-3xl flex justify-center items-center">
         {isFav ? (
           <button onClick={handleRemoveFavorites} className="absolute left-4 top-4">
