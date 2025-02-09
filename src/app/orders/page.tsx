@@ -4,7 +4,7 @@ import { db } from '../../../pages/api/dpConfig'
 import { Order } from '../../../pages/api/schema'
 import { OrderProps } from '../../../types'
 import { useUser } from '@clerk/nextjs'
-import { eq } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
 import OrderDetails from './components/OrderDetails'
 import Image from 'next/image'
 
@@ -23,7 +23,7 @@ const OrdersPage = () => {
     const email = user?.primaryEmailAddress?.emailAddress;
     if (!email) return;
   try {
-    const result = await db.select().from(Order)
+    const result = await db.select().from(Order).orderBy(desc(Order.id))
     .where(eq(Order.createdBy, email))
     setOrders(result)
   } catch (error) {

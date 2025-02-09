@@ -63,7 +63,7 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
   
 
   return (
-    <div className={`flex flex-col md:flex-row gap-8 items-start ${className}`}>
+    <div className={`flex flex-col md:flex-row gap-8 items-center ${className}`}>
       <div className="relative w-full md:w-[444px] h-[300px] md:h-[530px] bg-[#F0EEED] rounded-3xl flex justify-center items-center">
         {isFav ? (
           <button onClick={handleRemoveFavorites} className="absolute left-4 top-4">
@@ -84,11 +84,12 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
       </div>
 
 
-      <div className="flex-1">
-        <h2 className="text-2xl md:text-[40px] font-bold uppercase tracking-tighter">
+      <div className="flex-1 ">
+        <div>
+          <h2 className="text-2xl md:text-[40px] font-bold uppercase tracking-tighter">
           {product?.title}
         </h2>
-        <div className="flex items-center gap-2 mb-2">
+        <div className="flex items-center gap-2  my-4">
           {[...Array(fullStars)].map((_, i) => (
             <StarIcon key={i} className="fill-yellow-400 text-yellow-400" />
           ))}
@@ -128,7 +129,9 @@ const ProductDetails = ({ product, className }: { product: any; className?: stri
           </div>
         </div>
 
-        <div className="flex   items-center my-5">
+        </div>
+        
+        <div className=" flex items-center my-5">
           <button
             onClick={handleAddToCart}
             className="w-full md:w-[60%] rounded-full text-white bg-black py-[16px]"
