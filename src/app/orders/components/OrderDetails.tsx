@@ -26,7 +26,7 @@ const OrderDetails = ({order}:{order:OrderProps}) => {
 
 
         </div>
-        <Stepper activeStep={order.status==='pending'? 0
+        <Stepper activeStep={order.status==='ordered'? 0
             :order.status==='in production'? 1 
             :order.status==='shipped'? 2
             :4} alternativeLabel>

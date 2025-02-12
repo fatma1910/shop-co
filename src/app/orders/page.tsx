@@ -7,12 +7,16 @@ import { useUser } from '@clerk/nextjs'
 import { desc, eq } from 'drizzle-orm'
 import OrderDetails from './components/OrderDetails'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState<OrderProps[]>([]);
+  const [visibleOrders, setVisibleOrders] = useState<OrderProps[]>([]);
   const { user } = useUser();
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 4 ;
 
   useEffect(() => {
     
@@ -26,9 +30,17 @@ const OrdersPage = () => {
     const result = await db.select().from(Order).orderBy(desc(Order.id))
     .where(eq(Order.createdBy, email))
     setOrders(result)
+    setVisibleOrders(result.slice(0,ordersPerPage))
   } catch (error) {
     console.error("Error fetching orders:", error)
   }
+}
+
+const handleLoadMore = () => {
+  const nextPage = currentPage + 1;
+  const newVisibleProducts = orders.slice(0, nextPage * ordersPerPage);
+  setVisibleOrders(newVisibleProducts);
+  setCurrentPage(nextPage);
 }
 
   return (
@@ -42,13 +54,23 @@ const OrdersPage = () => {
         ): (
             <>
         <h1 className='text-3xl font-bold uppercase tracking-tighter'>Orders</h1>
-        {orders.map(order=> {
+        {visibleOrders.map(order=> {
             return (
             <div className='flex flex-col gap-10 mt-12 '>
             <OrderDetails order={order}/>
             </div>
             )
         })}
+
+        {visibleOrders.length < orders.length && (
+            <div className="flex justify-center mt-8">
+              <Button
+                onClick={handleLoadMore}
+              >
+                Load More
+              </Button>
+            </div>
+          ) }
     </>
         )
     }

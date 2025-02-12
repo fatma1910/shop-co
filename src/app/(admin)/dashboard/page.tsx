@@ -1,10 +1,10 @@
-import React from 'react'
-import CreateProduct from '../components/CreateProduct'
+
+import AllOrders from '../components/AllOrders'
 
 const page = () => {
   return (
-    <div>
-        <CreateProduct/>
+    <div >
+        <AllOrders/>
     </div>
   )
 }
