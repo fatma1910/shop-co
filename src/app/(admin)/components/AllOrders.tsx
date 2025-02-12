@@ -102,6 +102,7 @@ const AllOrders = () => {
 
   return (
     <div className="m-8">
+        <h1 className='text-2xl font-bold mb-4'>Orders</h1>
       <Paper sx={{ height: 700, width: '100%' }}>
         <DataGrid
           rows={orders}
