@@ -10,7 +10,7 @@ export default function layout({
     return (
         <SidebarProvider>
         <Sidebar />
-        <main className="sm:w-[80%] ">
+        <main className="w-[100%] ">
           <SidebarTrigger />
           {children}
         </main>
