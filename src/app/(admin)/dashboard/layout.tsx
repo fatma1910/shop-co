@@ -10,7 +10,7 @@ export default function layout({
     return (
         <SidebarProvider>
         <Sidebar />
-        <main className="w-[100%] ">
+        <main className="w-[100%] overflow-hidden">
           <SidebarTrigger />
           {children}
         </main>

@@ -23,6 +23,8 @@ const AllOrders = () => {
     getOrders();
   }, []);
 
+  
+
   const getOrders = async () => {
     try {
       const result = await db.select().from(Order).orderBy(desc(Order.id));
@@ -32,21 +34,36 @@ const AllOrders = () => {
     }
   };
 
-  const handleStatusChange = async (event: SelectChangeEvent, id: number) => {
+  const handleStatusChange = async (event: SelectChangeEvent, id: number, email: string) => {
     const newStatus = event.target.value;
-
+  
     try {
       await db.update(Order).set({ status: newStatus }).where(eq(Order.id, id));
-
+  
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
           order.id === id ? { ...order, status: newStatus } : order
         )
       );
+  
+      if (newStatus === "shipped") {
+        await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            to: email,
+            subject: "Your Order Has Been Shipped!",
+            text: `Dear Customer, your order #${id} has been shipped. You will receive it soon!`,
+            imageUrl: "https://cdn.dribbble.com/userupload/23488960/file/original-b2669d9053ab5b9102d9cb488b984257.gif", 
+          }),
+        });
+      }
     } catch (error) {
-      console.error('Error updating status:', error);
+      console.error("Error updating status:", error);
     }
   };
+  
+  
 
   const handleOpenDialog = (order: OrderProps) => {
     setSelectedOrder(order);
@@ -72,7 +89,7 @@ const AllOrders = () => {
       renderCell: (params: GridRenderCellParams) => (
         <Select
           value={params.value ?? 'ordered'}
-          onChange={(event) => handleStatusChange(event, params.row.id)}
+          onChange={(event) => handleStatusChange(event, params.row.id, params.row.email)}
           fullWidth
           size="small"
         >
@@ -84,6 +101,8 @@ const AllOrders = () => {
         </Select>
       ),
     },
+    
+    
     {
       field: 'productsDetails',
       headerName: 'Product Details',
@@ -98,18 +117,18 @@ const AllOrders = () => {
         </Button>
       ),
     },
+    { field: 'total', headerName: 'Total Price', width: 130 },
   ];
 
   return (
     <div className="m-8">
         <h1 className='text-2xl font-bold mb-4'>Orders</h1>
-      <Paper sx={{ height: 700, width: '100%' }}>
+      <Paper sx={{ height: 660, width: '100%' }}>
         <DataGrid
           rows={orders}
           columns={columns}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[ 15, 20,25 ]}
-          checkboxSelection
           sx={{ border: 0 }}
         />
       </Paper>

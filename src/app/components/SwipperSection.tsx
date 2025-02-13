@@ -17,8 +17,8 @@ const SwiperSection = ({product,title}:{product:ProductData[],title:string}) => 
         breakpoints={{
             320: {slidesPerView: 1},
             480: {slidesPerView: 2 },
-            768: {slidesPerView: 3},
-            1024: {slidesPerView: 4},
+            968: {slidesPerView: 3},
+            1260: {slidesPerView: 4},
         }}
         pagination={{
             clickable: true,

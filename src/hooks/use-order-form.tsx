@@ -31,6 +31,7 @@ export default function UseOrder() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...values, products: cartDetails, createdBy: user?.primaryEmailAddress?.emailAddress , total:totalPrice  }), 
       });
+      console.log(user?.primaryEmailAddress?.emailAddress )
 
       if (!response.ok) {
         throw new Error("Failed to place order");
