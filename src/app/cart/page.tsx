@@ -49,19 +49,28 @@ const page = () => {
                     <div className='flex justify-between'>
                         <p className='text-[#00000099]'>Delivery Fee</p>
                         <h4 className='text-xl font-bold'>
-                            $15
+                        {cartCount === 0? (
+                            `$0`
+                        ):(
+                            `$15`
+                        )}
                         </h4>
                     </div>
                 </div>
                 <div  className='flex justify-between mt-6'>
                     <p className='text-xl'>Total</p>
                     <h4 className='text-2xl font-bold'>
-                        ${Number(totalPrice) - (Number(totalPrice)*(20/100)) + 15}
+                    {cartCount === 0? (
+                            `$0`
+                        ):(
+                            `${Number(totalPrice) - (Number(totalPrice)*(20/100)) + 15}`
+                        )}
+                        
                     </h4>
                 </div>
 
                 <Link href={`${isSignedIn?'/checkout' : '/sign-in'}`}>
-                <button className='w-full bg-black text-white rounded-full py-4 mt-8 text-lg'>Go to Checkout</button>
+                <button disabled={cartCount === 0}  className='w-full bg-black text-white rounded-full py-4 mt-8 text-lg disabled:bg-gray-400 disabled:cursor-not-allowed'>Go to Checkout</button>
                 </Link>
                 
 
