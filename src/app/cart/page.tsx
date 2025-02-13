@@ -63,7 +63,7 @@ const page = () => {
                     {cartCount === 0? (
                             `$0`
                         ):(
-                            `${Number(totalPrice) - (Number(totalPrice)*(20/100)) + 15}`
+                            `$${Number(totalPrice) - (Number(totalPrice)*(20/100)) + 15}`
                         )}
                         
                     </h4>
