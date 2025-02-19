@@ -12,7 +12,7 @@ const AboutHero = () => {
                 <p className='text-[16px] leading-6'>Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer.</p>
             </div>
         </div>
-        <Image src={'/about.jpg'} alt='about' width={705} height={609} className='-right-20  relative xl:w-[705px] lg:w-[567px] md:w-[430px] rounded-md '/>
+        <Image src={'/about.jpg'} alt='about' width={705} height={609} className='-right-20  relative xl:w-[705px] lg:w-[567px] md:w-[430px] rounded-md ' loading='eager'/>
     </div>
   )
 }

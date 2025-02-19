@@ -1,7 +1,5 @@
 'use client'
 
-import { Delete, Minus, Plus, Trash2 } from 'lucide-react';
-import Image from 'next/image';
 import React from 'react'
 import { useShoppingCart } from 'use-shopping-cart';
 import CartItems from './components/CartItems';
@@ -16,6 +14,9 @@ const page = () => {
 
   return (
     <div className='mt-16 xl:mx-[100px] lg:mx-16 mx-5 '>
+        <head>
+            <title>Cart</title>
+        </head>
         <h1 className='md:text-4xl text-3xl font-bold tracking-tighter uppercase'>Your cart</h1>
         <div className='my-10 flex flex-col lg:flex-row justify-between items-start gap-4'>
             <div className='w-full lg:w-[65%] rounded-3xl border px-6 py-5 flex flex-col gap-6 '>

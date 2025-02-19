@@ -25,6 +25,9 @@ const page = ({params}:{params:{id: number}}) => {
     }
   return (
     <div className='mt-16 xl:mx-[100px] lg:mx-16 mx-5'>
+      <head>
+        <title>{productDetails?.title}</title>
+      </head>
         <ProductDetails product={productDetails}/>
         <CustomerReviews productId={params} />
         <Related product={productDetails} />

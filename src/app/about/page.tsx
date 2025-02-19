@@ -7,6 +7,9 @@ import Services from './components/Services'
 const page = () => {
   return (
     <div>
+        <head>
+          <title>About</title>
+        </head>
         <AboutHero/>
         <Boxes/>
         <Managers/>

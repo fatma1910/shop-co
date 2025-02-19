@@ -4,6 +4,9 @@ import React from 'react'
 const page = () => {
   return (
     <div className='flex justify-center flex-col md:flex-row gap-7 my-10 md:my-40 mx-6 md:mx-16 xl:mx-[135px] items-center  '>
+        <head>
+            <title>Contact with Us</title>
+        </head>
         <div className='border border-[#0000000D] py-10 px-9 shadow-lg'>
             <div className='flex flex-col gap-6 pb-7 border-b-black border-b '>
                 <div className='flex items-center gap-4'>

@@ -9,7 +9,9 @@ const FavoritesPage = () => {
 
   return (
     <div className="px-6 md:px-16 py-12">
-        
+        <head>
+          <title>Favorite Page</title>
+        </head>
       {fav.length > 0 ? 
       (
       <><h2 className='md:text-5xl text-3xl font-bold mb-5 md:mb-10 tracking-tighter'>YOUR FAVORITES</h2>

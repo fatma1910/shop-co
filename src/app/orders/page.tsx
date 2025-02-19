@@ -45,6 +45,9 @@ const handleLoadMore = () => {
 
   return (
     <div className='mt-16 xl:mx-[100px] lg:mx-16 mx-5 ' >
+      <head>
+        <title>Orders</title>
+      </head>
     {orders.length === 0 ?
         (
         <div className='flex flex-col gap-10  items-center justify-center h-[75%]'>
