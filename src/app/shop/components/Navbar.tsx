@@ -10,7 +10,6 @@ import { Slider } from '@/components/ui/slider';
 import { db } from '../../../../pages/api/dpConfig';
 import { Category, Product, ProductCategory } from '../../../../pages/api/schema';
 import { CategoryProps, ProductData, ProductProps } from '../../../../types';
-import { Button } from '@/components/ui/button';
 import { DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose, Drawer } from '@/components/ui/drawer';
 import { Size } from '../../../../constant';
 

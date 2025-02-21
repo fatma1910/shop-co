@@ -45,6 +45,7 @@ export default function UseOrder() {
 
       clearCart();
       router.push("/orders");
+      clearCart();
     } catch (error) {
       console.error("Error submitting order:", error);
       Swal.fire({
